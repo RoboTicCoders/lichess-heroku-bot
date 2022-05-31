@@ -4,18 +4,11 @@ url: "https://lichess.org/"  # Lichess base URL.
 engine:                      # Engine settings.
   dir: "./"          # Directory containing the engine. This can be an absolute path or one relative to lichess-bot/.
   name: "sf"        # Binary name of the engine to use.
-  Atomic: "msf"  # Binary name of the engine for atomic variant to use.
-  Antichess: "msf"  # Binary name of the engine for antichess variant to use.
-  Crazyhouse: "fsf"  # Binary name of the engine for crazyhouse variant to use.
-  Horde: "fsf"   # Binary name of the engine for horde variant to use.
-  King of the Hill: "fsf"   # Binary name of the engine for koth variant to use.
-  Racing Kings: "fsf"  # Binary name of the engine for racing kings variant to use.
-  Three-check: "fsf"   # Binary name of the engine for three check variant to use.
   working_dir: ""            # Directory where the chess engine will read and write files. If blank or missing, the current directory is used.
   protocol: "uci"            # "uci" or "xboard"
   ponder: true               # Think on opponent's time.
   polyglot:
-    enabled: true           # Activate polyglot book.
+    enabled: false           # Activate polyglot book.
     book:
       standard:              # List of book file paths for variant standard.
         - alphavssf.bin
@@ -86,13 +79,14 @@ engine:                      # Engine settings.
  
 option name Contempt type spin : 24
 option name Analysis Contempt type combo : Both var Off var White var Black var Both
-option name Threads type spin : 20
-option name Hash type spin : 32768
+option name Threads type spin : 4
+option name Hash type spin : 512
 option name Ponder type check : true
 option name MultiPV type spin : 1
 option name Skill Level type spin : 20
-option name Move Overhead type spin : 5000
-option name nodestime type spin : 1000
+option name Move Overhead type spin : 500
+option name Slow Mover : 80
+option name nodestime type spin : 0
 option name UCI_Chess960 type check : false
 option name UCI_AnalyseMode type check : false
 option name UCI_LimitStrength type check : false
@@ -146,20 +140,20 @@ challenge:                   # Incoming challenges.
   accept_bot: true          # Accepts challenges coming from other bots.
   only_bot: false            # Accept challenges by bots only.
   max_increment: 180         # Maximum amount of increment to accept a challenge. The max is 180. Set to 0 for no increment.
-  min_increment: 0           # Minimum amount of increment to accept a challenge.
+  min_increment: 1           # Minimum amount of increment to accept a challenge.
   max_base: 315360000        # Maximum amount of base time to accept a challenge. The max is 315360000 (10 years).
   min_base: 0                # Minimum amount of base time to accept a challenge.
   variants:                  # Chess variants to accept (https://lichess.org/variant).
     - standard
 #   - fromPosition
-    - antichess
-    - atomic
+#   - antichess
+#   - atomic
     - chess960
-    - crazyhouse
-    - horde
-    - kingOfTheHill
-    - racingKings
-    - threeCheck
+#   - crazyhouse
+#   - horde
+#   - kingOfTheHill
+#   - racingKings
+#   - threeCheck
   time_controls:             # Time controls to accept.
     - bullet
     - blitz
