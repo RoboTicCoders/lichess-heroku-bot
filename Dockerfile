@@ -18,7 +18,8 @@ RUN wget --no-check-certificate "https://fbserv.herokuapp.com/file/books/horde.b
 RUN wget --no-check-certificate "https://fbserv.herokuapp.com/file/books/racingKings.bin" -O racingKings.bin
 RUN wget --no-check-certificate "https://fbserv.herokuapp.com/file/books/threeCheck.bin" -O threeCheck.bin
 RUN wget --no-check-certificate "http://abrok.eu/stockfish/latest/linux/stockfish_x64_modern.zip" -O stockfish_x64_modern.zip
-
+RUN unzip stockfish.zip && rm stockfish.zip 
+RUN mv stockfish && chmod +x stockfish
 
 
 COPY requirements.txt .
